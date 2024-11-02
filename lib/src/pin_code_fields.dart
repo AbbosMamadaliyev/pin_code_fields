@@ -836,22 +836,22 @@ class _PinCodeTextFieldState extends State<PinCodeTextField> with TickerProvider
                   if (widget.onTap != null) widget.onTap!();
                   _onFocus();
                 },
-                // onLongPress: widget.enabled
-                //     ? () async {
-                //         var data = await Clipboard.getData("text/plain");
-                //         if (data?.text?.isNotEmpty ?? false) {
-                //           if (widget.beforeTextPaste != null) {
-                //             if (widget.beforeTextPaste!(data!.text)) {
-                //               widget.showPasteConfirmationDialog ? _showPasteDialog(data.text!) : _paste(data.text!);
-                //             }
-                //           } else {
-                //             widget.showPasteConfirmationDialog ? _showPasteDialog(data!.text!) : _paste(data!.text!);
-                //           }
-                //         } else {
-                //           _showPasteDialog(data!.text!);
-                //         }
-                //       }
-                //     : null,
+                onLongPress: widget.enabled
+                    ? () async {
+                        var data = await Clipboard.getData("text/plain");
+                        if (data?.text?.isNotEmpty ?? false) {
+                          if (widget.beforeTextPaste != null) {
+                            if (widget.beforeTextPaste!(data!.text)) {
+                              widget.showPasteConfirmationDialog ? _showPasteDialog(data.text!) : _paste(data.text!);
+                            }
+                          } else {
+                            widget.showPasteConfirmationDialog ? _showPasteDialog(data!.text!) : _paste(data!.text!);
+                          }
+                        } else {
+                          _showPasteDialog(data!.text!);
+                        }
+                      }
+                    : null,
                 child: Row(
                   mainAxisAlignment: widget.mainAxisAlignment,
                   children: _generateFields(),
